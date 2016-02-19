@@ -1,0 +1,124 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+
+\begin{document}
+\title{Elementos de programación Python 1}
+\author{Reyna Cornelio}
+\date{25 Enero 2016}
+\maketitle
+
+
+
+ 
+ A continuación se presentaran algunos problemas resueltos  Con la finalidad de familiarizarse con el entorno de Python. Se adjuntan los codigos que se utilizaron para poder resolver los problemas
+ 
+\subsection*{Caída de un cuerpo} 
+
+Se deja caer una pelota desde el techo de una torre de altura h. Se desea saber la altura de la pelota respecto a la torre a un determinado tiempo después de haber sido dejada caer.
+Para este primer problema se copió el código que se presenta a continuación
+
+\begin{verbatim}
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Jan 25 20:06:38 2016
+
+@author: Reyna
+"""
+h = float(input("Proporciona la altura de la torre: "))
+t = float(input("Ingrese el tiempo: "))
+s = 0.5*9.81*t**2
+print("La altura de la pelota es", h-s, "metros")
+
+\end{verbatim}
+
+Este programa fue sencillo de realizar el problema surgió al modificarlo para que nos diera el tiempo, para ello, se realizó el siguiente código.
+
+\begin{verbatim}
+inserte código aquí
+\end{verbatim}
+
+
+
+
+\subsubsection*{Coordenadas polares}
+Este programa calcula los valores a coordenadas polares. Con este código se producirá uno similiar pra poder calcular las coordenadas esféricas.
+\begin{verbatim}
+from math import sin,cos,pi
+
+r = float(input("introduce r: " ))
+
+d = float(input("Ingresa theta en grados: "))
+
+theta = d*pi/180
+
+x = r*cos(theta)
+
+y = r*sin(theta)
+
+print("x=",x,"y=",y)
+\end{verbatim}
+
+\subsubsection*{Coordenadas esféricas}
+\begin{verbatim}
+r = float(input("Introduce r: " ))
+
+d = float(input("Introduce theta en grados: "))
+
+d2 = float(input("Introduce phi en grados: " ))
+
+theta = d*pi/180 
+phi= d*pi/180 
+
+x = r*sin(theta)*cos(phi)
+
+y = r*sin(theta)*cos(phi)
+
+z = r*cos(theta)
+
+print ("x =",x,"y =",y, "z =",z)
+\end{verbatim}
+
+\subsubsection*{Números pares e impares}
+
+Este programa me resultó algo confuso, debido a que, no leí bien las instrucciones, sin embargo, una vez entendida las indicaciones fue sencillo de realizar
+\begin{verbatim}
+n = int(input("Enter an integer: " ))
+
+if n%2==0:
+    
+    print("even")
+    
+else:
+    
+    print("odd")
+
+print ("Enter two integers, on even, one odd.")
+
+m = int(input("Enter the first integer: 1") )
+
+n = int(input("Enter the second integer: "))
+    
+while (m+n)%2==0:
+    
+    print ("One must be even the other odd.")
+    
+    m = int(input("Enter the first integer: " ))
+    n = int(input("Enter the second integer: "))
+    
+print("The numbers you chose are",m,"and",n)
+\end{verbatim}
+
+\subsubsection*{Fibonnacci}
+
+En la terminal no se muestran muchos número de la secuencia, se debe de suponer al rango que se pone.
+
+\begin{verbatim}
+f1,f2 = 1,1
+
+while f2<1000:
+    print(f2)
+    f1,f2 = f2,f1+f2
+\end{verbatim}
+ \end{document}
