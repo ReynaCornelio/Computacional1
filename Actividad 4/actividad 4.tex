@@ -1,0 +1,109 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+
+\begin{document}
+\title{Actividad 4}
+\author{Reyna Cornelio}
+\date{11 de Febrero 2016}
+\maketitle
+
+El método de los mínimos cuadrados es un enfoque estándar en el análisis de regresión para la solución aproximada de sistemas sobredeterminadas, es decir, conjuntos de ecuaciones en las que hay más ecuaciones que incógnitas.
+En este método lo que se trata de hacer es obtener una solución global la cual minimiza la suma de los cuadrados de  los errores cometidos en los resultados de cada ecuación.
+
+Se divide en dos categorías: lineales y no lineales. El problema lineal se genera en el análisis de regresión estadística; que tiene una solución de forma cerrada. El problema no lineal por lo general se resuelve mediante iteraticiones; en cada iteración el sistema se aproxima por una lineal, y por lo tanto el cálculo del núcleo es similar en ambos casos.
+
+
+Para está actividad se realizó una ajuste de lineal y exponencial dos casos, en los cuales se tenía una serie de datos. Los cuales fueron exportados al programa para poder realizar el ajuste adecuado.
+Se auxilió de las herramientas de SciPy, para poder obtener la gráfica correspondiente. 
+
+
+A continuación se muestran los códigos correspondientes para cada problema.
+
+\subsection*{Temperatura de invierno en Nueva York}
+
+En esta sección se generó un archivo con el registro del año y la temperatura que se registró en dicha época.
+Los valores tomados fueron el promedio de un conjunto de datos a partir de 40 estaciones metereológicas intercaladas en todo el estado. Se muestra claramentete la variación de año en año.
+Se utilizó un modelo de regresión lineal.
+
+
+El código con el cual se ajustaron los datos es el siguiente.
+
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import optimize
+
+datos = np.loadtxt('temperaturas.txt')
+x = datos[: , 0]
+y = datos [: , 1]
+
+
+#regresion
+fitfunc = lambda p, x: p[0]*x +p[1]
+#ajuste
+errfunc = lambda p, x, y: fitfunc(p, x) -y
+
+p0 = [1, 1]
+
+#optimizando
+p1,success = optimize.leastsq(errfunc, p0[:], args= (x, y))
+
+
+#para graficar nuestra función
+
+time = np.linspace(x.min(), y.max(), 100)
+
+plt.plot(time, fitfunc(p1, time), "g-", label="Ajuste lineal")
+
+plt.title("Temperaturas en invierno en New York de 1900-1999")
+plt.grid()
+plt.legend()
+plt.grid()
+plt.legend()
+plt.xlabel("Año")
+plt.ylabel("Temperatura")
+
+\end{verbatim}
+Su correspondiente gráfica:
+
+
+\includegraphics[scale=0.5]{../../Documents/Computacional/ajuste lineal.png} 
+
+\section*{Presión atmosférica vs. altitud}
+
+Para esta serie de datos se realizó un ajuste exponencial, para ello solo se modifico el código anterior.
+
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import optimize
+
+datos = np.loadtxt('presiones.txt')
+x = datos[: , 0]
+y = datos [: , 1]
+
+
+#forma de la función
+def f(x, a, b, c):
+return  a * np.exp(-b * x) + c
+
+#Ajuste exponencial
+popt, pcov = curve_fit(f,x,y)
+
+
+#para graficar nuestra función
+
+time = np.linspace(x.min(), y.max(), 100)
+
+plt.plot(time, fitfunc(p1, time), "g-", label="Ajuste exponencial")
+
+plt.title("Presión atmosférica vs. altitud")
+plt.grid()
+plt.legend()
+plt.xlabel("Altitud")
+plt.ylabel("presión")
+\end{verbatim}
+\end{document}
