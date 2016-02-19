@@ -1,0 +1,126 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+
+\begin{document}
+\title{Péndulo}
+\author{Reyna Cornelio}
+\date{19 Enero 2016}
+\maketitle
+Las matemáticas que se utilizan en el péndulo son bastante complicadas. Para poder simplificarlas se puede utilizar en este caso, el péndulo simple la cual permite resolver analíticamente la ecuación de movimiento para oscilaciones pequeñas. 
+
+\section{Péndulo simple}
+Se le conoce como péndulo de gravedad simple a la idealización del péndulo real. 
+Un péndulo simple debe decumplir con ciertos supuestos:
+
+\begin{itemize}
+\item 
+Debe haber una carga puntual, la cual estará suspendida de un cable o una varilla tensa, que no se extienda.
+\end{itemize}
+
+\begin{itemize}
+\item 
+
+El movimiento sólo ocurre en dos dimensiones.
+\end{itemize}
+
+\begin{itemize}
+\item 
+Se desprecian las fuerzas no conservativas.
+\end{itemize}
+
+
+La ecuación diferencial que describe el comportamiento de un péndulo simple es:
+
+$ \dfrac{d^2\theta}{dt^2}+\dfrac{g}{l}sin\theta=0 $
+
+Donde $\textit{g}$ es la aceleración debida a la gravedad, \textit{l} la longitud del péndulo y \textit{\theta} el desplazamiento angular. La flecha azul es la fuerza de la gravedad que se ejerce sobre la masa, y las flechas de color violeta son sus componentes paralelos y perpendiculares al movimiento instántaneo. La dirección de la velocidad instántanea siempre apunta a lo largo del eje rojo, que se considera el eje tangencial por que su dirección es siempre tamgente al circulo, el área que barre el péndulo es un semicirculo, y por eso \theta es medido en radianes.
+
+Considere la segunda ley de Newton,
+
+
+$F=ma$
+
+Donde F es la fuerza que es ejercida sobre el objeto, m la masa y a la aceleración. Debido a que sólo se hace referencia a los cambios de velocidad y las turbulencias se ve obligado a permanecer en una trayectoria circular, se aplica la ecuación de Newton a sólo el eje tangencial. De esta manera nos queda las siguientes expresiones 
+
+$F=-mg\sin\theta=ma$
+
+$a=-g\sin\theta$
+
+ El signo negativo en el lado derecho implica que \theta y siempre apuntan en direcciones opuestas. Esto tiene sentido porque cuando un péndulo oscila más hacia la izquierda, es de esperar que se acelere de nuevo hacia la derecha.
+La aceleración que se produce es lineal a la largo del eje marcado con color rojo, el cual esta relacionado con el cambio en el ángulo \theta que está relacionado con el la longitud de arco. Tomemos en cuenta que:
+
+$ s=l\theta$
+
+$\dfrac{ds}{dt}= l\dfrac{d\theta}{dt}$
+
+
+$\dfrac{d^2s}{d^2}= l\dfrac{d^2\theta}{dt^2}$
+
+sustituyendo en la ecuación  tenemos que:
+$l\dfrac{d^2\theta}{dt^2}=-g\sin\theta$
+
+
+reacomondando términos nos queda
+$l\dfrac{d^2\theta}{dt^2}+ g\sin\theta = 0$
+
+
+\subsection*{Aproximación para un ángulo pequeño}
+La ecuación diferencial dada no es fácil de resolver, pues no puede ser expresada en términos de funciones elementales. Ahora bien si se considera únicamnete que el ángulo es mucho menor a un radián, se obtiene una solución que puede ser obtenida fácilmente. Entonces se tiene que:
+
+$\theta\ll1,$
+
+Por tanto,
+
+$\sin\theta\approx\theta,$
+
+da la ecuación para el oscilador ármonico.
+
+$\dfrac{d^2\theta}{dt^2}+\dfrac{g}{l}\theta=0$
+
+el error que se produce es aproximadamente del orden de $\theta^3$ (de acuerdo a la serie de Maclaurin para $\sin\theta)$.
+
+Dada las condiciones iniciales $\theta(0)=\theta_0$ y $\dfrac{d\theta}{dt}(0)=0$ la solución sería:
+
+$\theta(t)=\theta_0\cos\left(\sqrt{\dfrac{g}{l}t}\right)$                  $\theta\ll 1.$
+\subsection*{Período arbitrario de la amplitud}
+
+Para amplitudes mas allá del pequeño ángulo de aproximación, se puede calcular el período exacto, primero se invierte la ecuación de la velocidad angular obtenida del metódo de energía.
+$\dfrac{dt}{d\theta}=\sqrt{\dfrac{l}{2g}}\dfrac{1}{\sqrt{cos\theta-cos\theta_0}}$
+
+Se puede integrar un ciclo, medio ciclo ó un cuarto de ciclo dependiendo de la situación.
+Lo que nos lleva a:
+
+$T=4\sqrt{\dfrac{l}{2g}}\int$
+
+Observe que la integral diverge en $\theta_0$  cuando se acerca por la vertical, entonces tenemos
+
+$\lim T_{\theta_0\longrightarrow\pi} =\infty$
+
+Esta integral se puede reeescribir en términos de la integral elíptica 
+
+$T=4\sqrt{\dfrac{l}{g}}F\left(\dfrac{\theta_0}{2},\csc\dfrac{\theta_0}{2}\right)\csc\dfrac{\theta_0}{2}$
+
+donde F es una integral elíptica incompleta de primer orden, la cual esta definida como
+
+$F(\varphi,\kappa)=\int\dfrac{1}{\sqrt{1-\kappa^2\sin^2u}}du.$
+
+Se sustituye el 
+$\sin u=\dfrac{\sin\dfrac{\theta}{2}}{\sin\dfrac{\theta_0}{2}}$ expresando $\theta$ en términos de \textit{u}
+
+
+$T=4\sqrt{\dfrac{l}{g}}K\left(\sin^2\left(\dfrac{\theta_0}{2}\right)\right)$
+\subsubsection*{Solución polinomial de Legendre para la integral elíptica}
+
+Dada la ecuación del período expresada en términos de $\theta$ y el polinomio de Legendre para la solución de la integral elíptica
+
+
+$K(\kappa)=\dfrac{\pi}{2} \left\lbrace 1+\left(\dfrac{1}{2}\right)^2\right.\kappa^2 + \left(\dfrac{1\cdot 3}{2\cdot 4}\right)^2\kappa^4+\cdot\cdot\cdot \left[\dfrac{(2n-1)!!}{(2n)!!}\right]^2\kappa^{2n} + \cdot\cdot\cdot $
+
+
+donde n!! se denota como doble factorial, la cual es una solución exacta del período del péndulo.
+
+
+\end{document}
