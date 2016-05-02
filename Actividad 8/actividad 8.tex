@@ -1,0 +1,841 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\usepackage{graphicx}
+\usepackage{cite}
+
+
+\begin{document}
+
+\title{Actividad 8: 
+Iniciando cálculo simbólico con Maxima}
+\author{Reyna Cornelio}
+\date{15 de Abril 2016}
+\maketitle
+
+El objetivo  de esta actividad es famialiarizarse con el entorno de WxMáxima.
+Para ello se tomaron algunas funciones del manual de Jay Kerns, dentro de las cuales se modificaron las funciones, los colores de las gráficas.
+
+A continuación se muestran las funciones tomadas del manual, así también se muestran las modificaciones que se realizaron.
+
+
+\subsection*{2. Geometría en tres dimensiones}
+\subsubsection*{2.1 Vectores y Álgebra Lineal}
+El funcionamiento de Maxima en esta sección es definir vectores para posteriormente realizar las operaciones deseadas.
+
+Ejemplo;
+
+\subsubsection*{2.2 Líneas, Planos y Superficies cuadráticas}
+
+
+\subsubsection*{2.3 Funciones Vectoriales}
+
+\subsubsection*{2.4 Longitud de arco y Curvaturas}
+
+\subsection*{3. Funciones de Varias Variables}
+\subsubsection*{3.1 Derivadas Parciales}
+
+Para definir una función es necesario definirla con una letra mayuscula.
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ G: 1/x^-2 / y^3;
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}\displaystyle
+\frac{{x}^{2}}{{y}^{3}}
+\end{math}
+%%%%%%%%%%%%%%%
+
+Para que Maxima realice la derivada de la función antes definida, es necesario poner el comando que se muestra a continuación. Si se tienen mas funciones, se requiere de definirla dentro de los parentesis.
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{verbatim}
+
+ diff(G);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+\frac{2\,x\,\mathrm{del}\left( x\right) }{{y}^{3}}-\frac{3\,{x}^{2}\,\mathrm{del}\left( y\right) }{{y}^{4}}
+\end{math}
+%%%%%%%%%%%%%%%
+
+Si se quiere saber el valor en un punto determinado, se define de la siguiente manera:
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ diff(G, x, 1, y, 1, x, 5);
+\end{verbatim}
+
+\begin{math}
+0
+\end{math}
+%%%%%%%%%%%%%%%
+
+\subsubsection*{3.2 Aproximación Lineal y Diferenciales}
+
+Para esta sección, es necesario definir la función, en este caso una de dos variables a la cual se le hará una aproximación.
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{verbatim}
+ f(x,y) :=exp(x^6)* cos(y);
+\end{verbatim}
+%%% OUTPUT:
+\begin{math}
+\mathrm{f}\left( x,y\right) :=\mathrm{exp}\left( {x}^{6}\right) \,\mathrm{cos}\left( y\right) 
+\end{math}
+%%%%%%%%%%%%%%%
+
+La aproximación que se realizará para la función es una serie de potencias con Taylor.
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ taylor(f(x,y), [x,y], [5,2], 5);
+\end{verbatim}
+\begin{math}
+\mathrm{cos}\left( 2\right) \,{e}^{15625}+\left( 18750\,\mathrm{cos}\left( 2\right) \,{e}^{15625}\,\left( x-5\right) -\mathrm{sin}\left( 2\right) \,{e}^{15625}\,\left( y-2\right) \right) +\frac{351581250\,\mathrm{cos}\left( 2\right) \,{e}^{15625}\,{\left( x-5\right) }^{2}-37500\,\mathrm{sin}\left( 2\right) \,{e}^{15625}\,\left( y-2\right) \,\left( x-5\right) -\mathrm{cos}\left( 2\right) \,{e}^{15625}\,{\left( y-2\right) }^{2}}{2}+(6592851577500\,\mathrm{cos}\left( 2\right) \,{e}^{15625}\,{\left( x-5\right) }^{3}-1054743750\,\mathrm{sin}\left( 2\right) \,{e}^{15625}\,\left( y-2\right) \,{\left( x-5\right) }^{2}-56250\,\mathrm{cos}\left( 2\right) \,{e}^{15625}\,{\left( y-2\right) }^{2}\,\left( x-5\right) +\mathrm{sin}\left( 2\right) \,{e}^{15625}\,{\left( y-2\right) }^{3})/\,6\,+(123635744367196500\,\mathrm{cos}\left( 2\right) \,{e}^{15625}\,{\left( x-5\right) }^{4}-26371406310000\,\mathrm{sin}\left( 2\right) \,{e}^{15625}\,\left( y-2\right) \,{\left( x-5\right) }^{3}-2109487500\,\mathrm{cos}\left( 2\right) \,{e}^{15625}\,{\left( y-2\right) }^{2}\,{\left( x-5\right) }^{2}+75000\,\mathrm{sin}\left( 2\right) \,{e}^{15625}\,{\left( y-2\right) }^{3}\,\left( x-5\right) +\mathrm{cos}\left( 2\right) \,{e}^{15625}\,{\left( y-2\right) }^{4})/\,24\,+(2318664702396234378600\,\mathrm{cos}\left( 2\right) \,{e}^{15625}\,{\left( x-5\right) }^{5}-618178721835982500\,\mathrm{sin}\left( 2\right) \,{e}^{15625}\,\left( y-2\right) \,{\left( x-5\right) }^{4}-65928515775000\,\mathrm{cos}\left( 2\right) \,{e}^{15625}\,{\left( y-2\right) }^{2}\,{\left( x-5\right) }^{3}+3515812500\,\mathrm{sin}\left( 2\right) \,{e}^{15625}\,{\left( y-2\right) }^{3}\,{\left( x-5\right) }^{2}+93750\,\mathrm{cos}\left( 2\right) \,{e}^{15625}\,{\left( y-2\right) }^{4}\,\left( x-5\right) -\mathrm{sin}\left( 2\right) \,{e}^{15625}\,{\left( y-2\right) }^{5})/\,120\,+...
+\end{math}
+%%%%%%%%%%%%%%%
+
+\subsubsection*{3.3 Regla de la Cadena y Diferenciación Implícita}
+
+Definimos la función:
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ F: 3*x*1/2*y*z + 2*x^2*y^3*z^4 - 7/3*x - x*z;
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+2\,{x}^{2}\,{y}^{3}\,{z}^{4}+\frac{3\,x\,y\,z}{2}-x\,z-\frac{7\,x}{3}
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+Realizamos la derivada parcial de cada variable, para ello se define la función y la variable a la que se hará dicha derivada:
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+
+\begin{verbatim}
+ Fx: diff(F, x);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+4\,x\,{y}^{3}\,{z}^{4}+\frac{3\,y\,z}{2}-z-\frac{7}{3}
+\end{math}
+%%%%%%%%%%%%%%%
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ Fy: diff(F, y);
+\end{verbatim}
+%%% OUTPUT:
+
+\begin{math}
+6\,{x}^{2}\,{y}^{2}\,{z}^{4}+\frac{3\,x\,z}{2}
+\end{math}
+%%%%%%%%%%%%%%%
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ Fz: diff(F, z);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+8\,{x}^{2}\,{y}^{3}\,{z}^{3}+\frac{3\,x\,y}{2}-x
+\end{math}
+%%%%%%%%%%%%%%%
+
+\subsubsection*{3.4 Derivadas Diferenciales y Gradiente}
+
+Definimos la función:
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+f(x,y) :=exp(x^6)* cos(y);
+\end{verbatim}
+%%% OUTPUT:
+
+\begin{math}
+\mathrm{f}\left( x,y\right) :=\mathrm{exp}\left( {x}^{6}\right) \,\mathrm{cos}\left( y\right) 
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+Cambiamos al sistema de coordenadas adecuado. Para ello ponemos el siguiente comando.
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+load(vect);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+C:/PROGRA~2/MAXIMA~1.0-2/share/maxima/5.28.0-2/share/vector/vect.mac
+\end{math}
+%%%%%%%%%%%%%%%
+Para el factor de escala:
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\
+\begin{verbatim}
+scalefactors([x,y]);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+done
+\end{math}
+%%%%%%%%%%%%%%%
+
+A continuación nos encontramos el gradiente:
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ gdf: grad(f(x,y));
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+\mathrm{grad}\left( {e}^{{x}^{6}}\,\mathrm{cos}\left( y\right) \right) 
+\end{math}
+%%%%%%%%%%%%%%%
+
+ 
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{verbatim}
+ ev(express(gdf), diff);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+[6\,{x}^{5}\,{e}^{{x}^{6}}\,\mathrm{cos}\left( y\right) ,-{e}^{{x}^{6}}\,\mathrm{sin}\left( y\right) ]
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{verbatim}
+
+define(gdf(x,y), 
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+\mathrm{gdf}\left( x,y\right) :=[6\,{x}^{5}\,{e}^{{x}^{6}}\,\mathrm{cos}\left( y\right) ,-{e}^{{x}^{6}}\,\mathrm{sin}\left( y\right) ]
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+define(gdf(x,y), %);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+\mathrm{gdf}\left( x,y\right) :=[6\,{x}^{5}\,{e}^{{x}^{6}}\,\mathrm{cos}\left( y\right) ,-{e}^{{x}^{6}}\,\mathrm{sin}\left( y\right) ]
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ float(%);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+\mathrm{gdf}\left( x,y\right) :=[6.0\,{x}^{5}\,{2.718281828459045}^{{x}^{6}}\,\mathrm{cos}\left( y\right) ,-1.0\,{2.718281828459045}^{{x}^{6}}\,\mathrm{sin}\left( y\right) ]
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\subsubsection*{3.5 Optimización y Extremos Locales}
+
+Para presentar los puntos críticos  tenemos que resolver el sistema de ecuaciones:
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+
+\begin{verbatim}
+ f(x,y) := x^3 + 1/2 * y^2 - 3 * x * y;
+\end{verbatim}
+%%% OUTPUT:
+
+\begin{math}
+\mathrm{f}\left( x,y\right) :={x}^{3}+\frac{1}{2}\,{y}^{2}+\left( -3\right) \,x\,y
+\end{math}
+%%%%%%%%%%%%%%%
+hora vamos a hallar el primer orden derivadas parciales de f, establecen iguales a cero y resolver para los valores de (x, y). Hacemos esto con la función de resolver, lo que supone que las expresiones se igualan a cero por defecto. Tenga en cuenta que resolver NDS fi todas las soluciones reales y complejas; sólo nos interesan las soluciones de bienes valiosos, sin embargo, y sin ignorar el resto.
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+
+\begin{verbatim}
+fx : diff(f(x,y), x);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+3\,{x}^{2}-3\,y
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+fy : diff(f(x,y), y);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+y-3\,x
+\end{math}
+%%%%%%%%%%%%%%%
+
+Obtenemos el mapa de los contornos:
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ draw3d(explicit(f(x,y), x, -2, 2, y, -2, 2), contour = map);
+\end{verbatim}
+%%% OUTPUT:
+\begin{math}
+\mathrm{draw3d}\left( \mathrm{explicit}\left( \frac{{y}^{2}}{2}-3\,x\,y+{x}^{3},x,-2,2,y,-2,2\right) ,contour=map\right) 
+\end{math}
+%%%%%%%%%%%%%%%
+
+Obtenemos el hessiano:
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ H: hessian(f(x,y), [x,y]);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+\begin{pmatrix}6\,x & -3\cr -3 & 1\end{pmatrix}
+\end{math}
+%%%%%%%%%%%%%%%
+
+obtnemos el determinante
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ determinant(H);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+6\,x-9
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\subsubsection*{3.6 Multiplicadores de Lagrange}
+Encontrar los valores extremos de la función:
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+f(x,y) := x^2 + y^2;
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+\mathrm{f}\left( x,y\right) :={x}^{2}+{y}^{2}
+\end{math}
+%%%%%%%%%%%%%%%
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ g: 3*x^2 + y^2;
+\end{verbatim}
+
+%%% OUTPUT:
+\begin{math}
+{y}^{2}+3\,{x}^{2}
+\end{math}
+%%%%%%%%%%%%%%%
+
+Creamos el sistema de ecuaciones que queremos resolver:
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+
+\begin{verbatim}
+eq1: diff(f(x,y), x) = h * diff(g, x);
+\end{verbatim}
+%%% OUTPUT:
+
+\begin{math}\
+2\,x=6\,h\,x
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+eq1: diff(f(x,y), x) = h * diff(g, x);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+2\,x=6\,h\,x
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+eq2: diff(f(x,y), y) = h * diff(g, y);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+2\,y=2\,h\,y
+\end{math}
+%%%%%%%%%%%%%%%
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+eq3: g = 3;
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+{y}^{2}+3\,{x}^{2}=3
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+
+
+
+\subsection*{4. Integración Múltiple}
+
+\subsubsection*{4.1 Integrales Dobles}
+Definimos la función
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ f(x,y) := 5*x^7 - 2/5*x*y + 2*y;
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+\mathrm{f}\left( x,y\right) :=5\,{x}^{7}-\frac{2}{5}\,x\,y+2\,y
+\end{math}
+%%%%%%%%%%%%%%%
+Para que maxima realice la doble integración ponemos le siguiente comando:
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+integrate(integrate(f(x,y), y), x);
+\end{verbatim}
+%%% OUTPUT:
+
+\begin{math}
+-\frac{{x}^{2}\,{y}^{2}}{10}+x\,{y}^{2}+\frac{5\,{x}^{8}\,y}{8}
+\end{math}
+%%%%%%%%%%%%%%%
+ 
+ Si queremos un valor exacto se agrega los puntos en los que se quiere que sea evaluado.
+ 
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+integrate(integrate(f(x,y), y, x^1/3, 7 - x), x, 0, 1);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+\frac{15091}{360}
+\end{math}
+%%%%%%%%%%%%%%%
+
+\subsubsection*{4.2 Integración en Coordenadas Polares}
+
+Podemos integrar en coordenadas polares de la forma obvia. Hacemos simplemente la sustitución $x = R\cos\theta$ $y = R \sin\theta$, entonces no se olvide de multiplicar el integrando por r.
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+[x,y]: [1/2*r * cos(theta), r * sin(2*theta)];
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+[\frac{r\,\mathrm{cos}\left( \theta\right) }{2},r\,\mathrm{sin}\left( 2\,\theta\right) ]
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ integrate(integrate(f(x,y) * r, r, 0, 2*cos(theta)), theta, -%pi/2, %pi/2);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+\frac{3575\,\pi }{8192}
+\end{math}
+%%%%%%%%%%%%%%%
+
+\subsubsection*{4.3 Integrales Triples}
+
+Para las integrales triples, el procedimiento es similar al de la integración doble, sólo se le agraga un integrate más.
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+f(x,y,z) := y/z; (%o1);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+\mathrm{f}\left( x,y,z\right) :=\frac{y}{z}
+\end{math}
+
+\begin{math}
+\frac{{x}^{2}}{{y}^{3}}
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+[x,y,z] : [9*r*cos(2*theta), r*sin(1/2*theta), z];
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+[9\,r\,\mathrm{cos}\left( 2\,\theta\right) ,r\,\mathrm{sin}\left( \frac{\theta}{2}\right) ,z]
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ integrate(integrate(integrate(f(x,y,z)*r, z,1,3), r,0,2), theta,0,3*%pi);
+\end{verbatim}
+%%% OUTPUT:
+
+\begin{math}
+\frac{16\,\mathrm{log}\left( 3\right) }{3}
+\end{math}
+%%%%%%%%%%%%%%%
+
+\subsubsection*{4.4 Integrales en Coordenadas Cilíndricas y Esféricas}
+Estas integrales se calculan igual que las integrales triples ordinarias, excepto multiplicamos el integrando por r (en coordenadas cilíndricas) o $\rho^2$ (en coordenadas esféricas).
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+f(x,y,z) := y/z; (%o1);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+\mathrm{f}\left( x,y,z\right) :=\frac{y}{z}
+\end{math}
+
+\begin{math}\
+\frac{{x}^{2}}{{y}^{3}}
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+[x,y,z] : [9*r*cos(2*theta), r*sin(1/2*theta), z];
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+[9\,r\,\mathrm{cos}\left( 2\,\theta\right) ,r\,\mathrm{sin}\left( \frac{\theta}{2}\right) ,z]
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+ integrate(integrate(integrate(f(x,y,z)*r, z,1,3), r,0,2), theta,0,3*%pi);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+\frac{16\,\mathrm{log}\left( 3\right) }{3}
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\subsubsection*{4.5 Cambio de Variable}
+Para más general transformaciones x = x (u, v) ey = y (u, v) que pueden utilizar la función jacobiana
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+\begin{verbatim}
+ f(x,y) := 3*x + 9*y;
+\end{verbatim}
+%%% OUTPUT:
+
+\begin{math}
+\mathrm{f}\left( x,y\right) :=3\,x+9\,y
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+[x,y]: [u^3 - v^4, 5 * u * v];
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+[{u}^{3}-{v}^{4},5\,u\,v]
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+J: jacobian([x,y], [u,v]);
+\end{verbatim}
+%%% OUTPUT:
+
+\begin{math}
+\begin{pmatrix}3\,{u}^{2} & -4\,{v}^{3}\cr 5\,v & 5\,u\end{pmatrix}
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+J: determinant(J);
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+20\,{v}^{4}+15\,{u}^{3}
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+integrate(integrate(f(x,y) * J, u,1,2), v,3,4);
+\end{verbatim}
+%%% OUTPUT:
+
+\begin{math}
+-\frac{70104845}{84}
+\end{math}
+%%%%%%%%%%%%%%%
+
+\subsection*{5. Cálculo Vectorial }
+\subsubsection*{5.1 Campos Vectoriales}
+
+\noindent
+%%%%%%%%%%%%%%%
+%%% INPUT:
+
+\begin{verbatim}
+coord: setify(makelist(k,k,-4,4));
+ points2d: listify(cartesian_product(coord ,coord)); vf2d(x,y):= vector([x,y],[cos(y),x]/6); vect2: makelist(vf2d(k[1],k[2]),k,points2d); apply(draw2d , append([color=pink], vect2));
+\end{verbatim}
+
+%%% OUTPUT:
+
+\begin{math}
+{-4,-3,-2,-1,0,1,2,3,4}
+\end{math}
+
+\begin{math}
+[[-4,-4],[-4,-3],[-4,-2],[-4,-1],[-4,0],[-4,1],[-4,2],[-4,3],[-4,4],[-3,-4],[-3,-3],[-3,-2],[-3,-1],[-3,0],[-3,1],[-3,2],[-3,3],[-3,4],[-2,-4],[-2,-3],[-2,-2],[-2,-1],[-2,0],[-2,1],[-2,2],[-2,3],[-2,4],[-1,-4],[-1,-3],[-1,-2],[-1,-1],[-1,0],[-1,1],[-1,2],[-1,3],[-1,4],[0,-4],[0,-3],[0,-2],[0,-1],[0,0],[0,1],[0,2],[0,3],[0,4],[1,-4],[1,-3],[1,-2],[1,-1],[1,0],[1,1],[1,2],[1,3],[1,4],[2,-4],[2,-3],[2,-2],[2,-1],[2,0],[2,1],[2,2],[2,3],[2,4],[3,-4],[3,-3],[3,-2],[3,-1],[3,0],[3,1],[3,2],[3,3],[3,4],[4,-4],[4,-3],[4,-2],[4,-1],[4,0],[4,1],[4,2],[4,3],[4,4]]
+\end{math}
+
+\begin{math}
+\mathrm{vf2d}\left( x,y\right) :=\mathrm{vector}\left( [x,y],\frac{[\mathrm{cos}\left( y\right) ,x]}{6}\right) 
+\end{math}
+
+\begin{math}
+[\mathrm{vector}\left( [-4,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,0],[\frac{1}{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-3,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,0],[\frac{1}{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-2,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,0],[\frac{1}{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-1,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,0],[\frac{1}{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [0,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},0]\right) ,\mathrm{vector}\left( [0,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},0]\right) ,\mathrm{vector}\left( [0,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},0]\right) ,\mathrm{vector}\left( [0,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},0]\right) ,\mathrm{vector}\left( [0,0],[\frac{1}{6},0]\right) ,\mathrm{vector}\left( [0,1],[\frac{\mathrm{cos}\left( 1\right) }{6},0]\right) ,\mathrm{vector}\left( [0,2],[\frac{\mathrm{cos}\left( 2\right) }{6},0]\right) ,\mathrm{vector}\left( [0,3],[\frac{\mathrm{cos}\left( 3\right) }{6},0]\right) ,\mathrm{vector}\left( [0,4],[\frac{\mathrm{cos}\left( 4\right) }{6},0]\right) ,\mathrm{vector}\left( [1,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,0],[\frac{1}{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [2,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,0],[\frac{1}{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [3,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,0],[\frac{1}{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [4,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,0],[\frac{1}{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{2}{3}]\right) ]
+\end{math}
+
+\begin{math}
+\mathrm{draw2d}(color=pink,\mathrm{vector}\left( [-4,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,0],[\frac{1}{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-4,4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{2}{3}]\right) ,\mathrm{vector}\left( [-3,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,0],[\frac{1}{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-3,4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{1}{2}]\right) ,\mathrm{vector}\left( [-2,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,0],[\frac{1}{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-2,4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{1}{3}]\right) ,\mathrm{vector}\left( [-1,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,0],[\frac{1}{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,1],[\frac{\mathrm{cos}\left( 1\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,2],[\frac{\mathrm{cos}\left( 2\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,3],[\frac{\mathrm{cos}\left( 3\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [-1,4],[\frac{\mathrm{cos}\left( 4\right) }{6},-\frac{1}{6}]\right) ,\mathrm{vector}\left( [0,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},0]\right) ,\mathrm{vector}\left( [0,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},0]\right) ,\mathrm{vector}\left( [0,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},0]\right) ,\mathrm{vector}\left( [0,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},0]\right) ,\mathrm{vector}\left( [0,0],[\frac{1}{6},0]\right) ,\mathrm{vector}\left( [0,1],[\frac{\mathrm{cos}\left( 1\right) }{6},0]\right) ,\mathrm{vector}\left( [0,2],[\frac{\mathrm{cos}\left( 2\right) }{6},0]\right) ,\mathrm{vector}\left( [0,3],[\frac{\mathrm{cos}\left( 3\right) }{6},0]\right) ,\mathrm{vector}\left( [0,4],[\frac{\mathrm{cos}\left( 4\right) }{6},0]\right) ,\mathrm{vector}\left( [1,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,0],[\frac{1}{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [1,4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{1}{6}]\right) ,\mathrm{vector}\left( [2,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,0],[\frac{1}{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [2,4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{1}{3}]\right) ,\mathrm{vector}\left( [3,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,0],[\frac{1}{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [3,4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{1}{2}]\right) ,\mathrm{vector}\left( [4,-4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,-3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,-2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,-1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,0],[\frac{1}{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,1],[\frac{\mathrm{cos}\left( 1\right) }{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,2],[\frac{\mathrm{cos}\left( 2\right) }{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,3],[\frac{\mathrm{cos}\left( 3\right) }{6},\frac{2}{3}]\right) ,\mathrm{vector}\left( [4,4],[\frac{\mathrm{cos}\left( 4\right) }{6},\frac{2}{3}]\right) )
+\end{math}
+%%%%%%%%%%%%%%%
+
+
+
+
+
+
+
+
+El entorno de trabajo de WxMaxima es sencillo, sin embargo, al momento de realizar los gráficos marcaba una serie de errores los cuales generalmente tenían que ver con el rango con el que se estaba trabajando. Me resultó mucho más sencillo al trabajar con campos vectoriales ya que sólo se define la función además de que ya cuenta con un comando determinado.
+\end{document}

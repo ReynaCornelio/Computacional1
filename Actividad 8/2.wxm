@@ -1,0 +1,60 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 12.04.0 ] */
+
+/* [wxMaxima: input   start ] */
+plane1: 3*x + 4*y + 5*z = 0;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load(draw);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+draw3d(enhanced3d = true, implicit(plane1, x,-4,4, y,-4,4, z, -6,6));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ellips1: 5*x^2 + 1/2*y^2 + 3*z^2 = 8;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ draw3d(enhanced3d = true, implicit(ellips1, x,-3,3, y,-2,2, z, -2,2));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ r(t) := [t, cos(t), sin(t)];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ r(1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+draw3d(parametric(cos(t), -cos(t), sin(t), t, -4, 4));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+diff(r(t), t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ load(vect);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+express(T(t) ~ N(t));
+/* [wxMaxima: input   end   ] */
+
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$

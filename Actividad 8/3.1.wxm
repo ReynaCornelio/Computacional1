@@ -1,0 +1,270 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 12.04.0 ] */
+
+/* [wxMaxima: input   start ] */
+f(x,y) := (1/2*x^2 - 1/2*y^2)^2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(draw);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+draw3d(explicit(f(x,y), x, -5, 5, y, -5, 5));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ draw3d(enhanced3d = true, explicit(f(x,y), x, -7, 7, y, -7, 7));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+draw3d(explicit(f(x,y), x, -5, 5, y, -5, 5), contour_levels = 25, contour = map);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+$$Derivadas parciales$$
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ G: 1/x^-2 / y^3;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ diff(G);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ diff(G, x, 1, y, 1, x, 5);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+3.2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ f(x,y) :=exp(x^6)* cos(y);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ taylor(f(x,y), [x,y], [5,2], 5);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+3.3;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ F: 3*x*1/2*y*z + 2*x^2*y^3*z^4 - 7/3*x - x*z;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ Fx: diff(F, x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ Fy: diff(F, y);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ Fz: diff(F, z);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+[-Fy/Fx, -Fx/Fz];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+3.4;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x,y) :=exp(x^6)* cos(y);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+load(vect);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+scalefactors([x,y]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ gdf: grad(f(x,y));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ ev(express(gdf), diff);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+define(gdf(x,y), %);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ float(%);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+3.5;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ f(x,y) := x^3 + 1/2 * y^2 - 3 * x * y;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fx : diff(f(x,y), x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+fy : diff(f(x,y), y);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve([fx,fy], [x,y]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ draw3d(explicit(f(x,y), x, -2, 2, y, -2, 2), contour = map);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ H: hessian(f(x,y), [x,y]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ determinant(H);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+3.6;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x,y) := x^2 + y^2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ g: 3*x^2 + y^2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq1: diff(f(x,y), x) = h * diff(g, x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq2: diff(f(x,y), y) = h * diff(g, y);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+eq3: g = 3;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+solve([eq1, eq2, eq3], [x, y, h]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+4;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ f(x,y) := 5*x^7 - 2/5*x*y + 2*y;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+integrate(integrate(f(x,y), y), x);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+integrate(integrate(f(x,y), y, x^1/3, 7 - x), x, 0, 1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+4.2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+[x,y]: [1/2*r * cos(theta), r * sin(2*theta)];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ integrate(integrate(f(x,y) * r, r, 0, 2*cos(theta)), theta, -%pi/2, %pi/2);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+4.4;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+f(x,y,z) := y/z; (%o1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+[x,y,z] : [9*r*cos(2*theta), r*sin(1/2*theta), z];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ integrate(integrate(integrate(f(x,y,z)*r, z,1,3), r,0,2), theta,0,3*%pi);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+4.5;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ f(x,y) := 3*x + 9*y;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+[x,y]: [u^3 - v^4, 5 * u * v];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+J: jacobian([x,y], [u,v]);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+J: determinant(J);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+integrate(integrate(f(x,y) * J, u,1,2), v,3,4);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+5;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coord: setify(makelist(k,k,-4,4));
+ points2d: listify(cartesian_product(coord ,coord)); vf2d(x,y):= vector([x,y],[cos(y),x]/6); vect2: makelist(vf2d(k[1],k[2]),k,points2d); apply(draw2d , append([color=pink], vect2));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+coord: setify(makelist(k,k,-2,2)); points3d: listify(cartesian_product(coord ,coord ,coord)); vf3d(x,y,z):= vector([x,y,z],[z,x,y]/8); vect3: makelist(vf3d(k[1],k[2],k[3]),k,points3d); apply(draw3d , append([color=blue], vect3));
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ f(x,y) := x^2 + 1/2*y^2;
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+[x,y]: [cos(1/2*t), sin(2*t)];
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ rp: diff([x,y], t);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ romberg(f(x,y)*sqrt(rp . rp), t, 0, 1);
+/* [wxMaxima: input   end   ] */
+
+/* [wxMaxima: input   start ] */
+ F(x,y) := [x^3 - 5*y^2, 5*y^3 - 3*x];
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
