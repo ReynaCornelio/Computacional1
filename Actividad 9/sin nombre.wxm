@@ -1,0 +1,27 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 12.04.0 ] */
+
+/* [wxMaxima: input   start ] */
+K(x):=sum((((2*n)!/(2^n*n!)^2)^2)*(sin(x/2))^(2*n), n, 0, 150), simpsum;
+N0(x):=sum((((2*n)!/(2^n*n!)^2)^2)*(sin(x/2))^(2*n), n, 0, 0), simpsum;
+N1(x):=sum((((2*n)!/(2^n*n!)^2)^2)*(sin(x/2))^(2*n), n, 0, 1), simpsum;
+N2(x):=sum((((2*n)!/(2^n*n!)^2)^2)*(sin(x/2))^(2*n), n, 0, 2), simpsum;
+N3(x):=sum((((2*n)!/(2^n*n!)^2)^2)*(sin(x/2))^(2*n), n, 0, 3), simpsum;
+N4(x):=sum((((2*n)!/(2^n*n!)^2)^2)*(sin(x/2))^(2*n), n, 0, 4), simpsum;
+N5(x):=sum((((2*n)!/(2^n*n!)^2)^2)*(sin(x/2))^(2*n), n, 0, 5), simpsum;
+ER0(x):=100*abs(K(x)-N0(x))/K(x);
+ER1(x):=100*abs(K(x)-N1(x))/K(x);
+ER2(x):=100*abs(K(x)-N2(x))/K(x);
+ER3(x):=100*abs(K(x)-N3(x))/K(x);
+ER4(x):=100*abs(K(x)-N4(x))/K(x);
+ER5(x):=100*abs(K(x)-N5(x))/K(x);
+plot2d([ER0(x)*100,ER1(x)*100,ER2(x)*100,ER3(x)*100,ER4(x)*100,ER5(x)*100], 
+[x,0,%pi/2],[y,0,100], [color,black,green,cyan,blue,magenta,red],
+[legend,"T0","T2","T4","T6","T8","T10"],
+[ylabel,"Error relativo (%)"],[xlabel,"(radianes)"], 
+[gnuplot_preamble, "set encoding iso_8859_1;set grid;
+set title ’Aproximación Del Período Para Los Primeros N Términos’"]);
+/* [wxMaxima: input   end   ] */
+
+/* Maxima can't load/batch files which end with a comment! */
+"Created with wxMaxima"$
